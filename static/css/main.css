@@ -131,3 +131,9 @@ div.dashboard {
     padding-left: 15px;
     max-width: 1000px;
 }
+
+.jobMatches {
+    margin-top: 10px;
+    margin-left: 15px !important;
+    max-width: 1000px;
+}

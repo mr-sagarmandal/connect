@@ -343,3 +343,35 @@ function getVerifyJobDescriptionForm() {
     form.innerHTML = formDivHTML;
     return form;
 }
+
+//Employee Match Div Creation
+function showMatch(jobMatches) {
+    clearPage();
+    createHeader("Jobs that Match your Skills");
+    createMatchDivs(jobMatches);
+}
+
+function createMatchDivs(jobMatches) {
+    var number = jobMatches.length;
+    for (var i = 0; i < number; i++) {
+        var job = jobMatches[i];
+        var bigContainer = document.createElement('div');
+        bigContainer.className = 'jumbotron jumbotron-fluid text-center jobMatches';
+        head = '';
+        head += "<h1>" + job['position'] + "</h1></br>" + "<h2>" + job['company'] + "</h2></br>";
+        head = head + '<h3>Skill Matches:</h3></br>';
+        var num2 = job['matches'].length
+        var matchString = '';
+        matchString += "<p>";
+        for (var j = 0; j < num2; j++) {
+            if (j == 0) {
+                matchString = matchString + job['matches'][j];
+            }
+            matchString = matchString + ',' + job['matches'][j];
+        }
+        matchString = matchString + '</p>';
+        head = head + matchString;
+        bigContainer.innerHTML = head;
+        document.getElementsByClassName("dashboard")[0].appendChild(bigContainer);
+    }
+}
