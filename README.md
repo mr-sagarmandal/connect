@@ -1,10 +1,11 @@
 # Connectr
-The Problem
+
+# The Problem
 We can all relate to the chaos of student career fairs. Students waste time wandering from booth to booth because they don’t have enough time beforehand to research each job opening and company. Recruiters waste time sifting through dozens of paper resumes trying to remember the best talent.
-What & Who
+# What & Who
 Connectr is a software that solves this problem by parsing through resumes and job descriptions to create opportunities based on matching qualifications and interests.
 
-Technicals
+# Technicals
 In order to utilize the database, two tables must be created in HBASE using the following schema:
 'job', {NAME => 'company'}, {NAME => 'job_info'}, {NAME => 'qualification'}
 'resume', {NAME => 'education'}, {NAME => 'experience'}, {NAME => 'personal_data'}, {NAME => 'skill'}
