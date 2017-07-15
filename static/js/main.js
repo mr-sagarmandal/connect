@@ -29,6 +29,7 @@ $(document).ready(function() {
             if (resumeText == "") {
                 alert('Resume Field Empty');
             } else {
+                resumeText =  {resumeText};
                 socket.emit("resumeText", resumeText);
             }
             socket.on('ResumeSuccess', function(data) {

@@ -8,6 +8,7 @@ import time
 from shutil import copyfile
 from flask import Flask, render_template, request, flash, session, request
 from flask_socketio import SocketIO, emit
+import ResumeParse
 
 async_mode = None
 app = Flask(__name__)
@@ -30,7 +31,8 @@ def test_disconnect():
 
 @socketio.on('resumeText')
 def getResume(data):
-    print data
+    ResumeParse.resume_parse(data)
+    print type(data)
     socketio.emit("ResumeSuccess", True)
 
 @socketio.on('jobDescriptionText')
