@@ -9,16 +9,68 @@ $(document).ready(function() {
     // server is established.
     socket.on('connect', function() {
        socket.emit('User has connected!');
-       loadInitDivisions(true);
-       $('.applicant-button').click(function() {
-           clearPage();
-           loadApplicantResume();
-       });
-       $('.recruiter-button').click(function() {
-           clearPage();
-           loadRecruitmentJob();
+       socket.on('init', function(data) {
+           loadInitDivisions(data);
+           $('.applicant-button').click(function() {
+               clearPage();
+               resumeClicked();
+           });
+           $('.recruiter-button').click(function() {
+               clearPage();
+               recruitmentClicked();
+           });
        });
     });
+
+    function resumeClicked() {
+        loadApplicantResume();
+        $('.upload-resume-btn').click(function() {
+            var resumeText = $('#resume-text').val();
+            if (resumeText == "") {
+                alert('Resume Field Empty');
+            } else {
+                socket.emit("resumeText", resumeText);
+            }
+            socket.on('ResumeSuccess', function(data) {
+                if (data) {
+                    notifyUploadResume(data);
+                    $('#resume-text').val('');
+                    resumeVerification();
+                } else {
+                    bigTrouble("Resume could not be uploaded. Reload and Try again");
+                }
+            });
+        });
+    }
+
+    function recruitmentClicked() {
+        loadRecruitmentJob();
+        $('.upload-jobdescription-btn').click(function() {
+            var jobDescriptionText = $('#jobdescription-text').val();
+            if (jobDescriptionText == "") {
+                alert('Job Description Field Empty');
+            } else {
+                socket.emit("jobDescriptionText", jobDescriptionText);
+            }
+            socket.on('JobDescriptionSuccess', function(data) {
+                if (data) {
+                    notifyUploadResume(data);
+                    $('#jobdescription-text').val('');
+                    jobDescriptionVerification();
+                } else {
+                    bigTrouble("Job Description could not be uploaded. Reload and Try again");
+                }
+            });
+        });
+    }
+
+    function resumeVerification() {
+        socket.emit('onResumeVerify');
+    }
+
+    function jobDescriptionVerification() {
+        socket.emit('onJobDescriptVerify');
+    }
 });
 
 // Clear Page
@@ -110,7 +162,7 @@ function getUploadResumeDiv() {
     var saveForm = document.createElement('form');
     saveForm.className = 'upload-resume-form';
     var formElementsHTML =
-        '<textarea class="form-control paste-text-field" rows="30" id="comment" placeholder="Paste your Resume here"></textarea>'+
+        '<textarea class="form-control paste-text-field" rows="30" id="resume-text" placeholder="Paste your Resume here"></textarea>'+
         '<input type="button" class="btn btn-primary upload-resume-btn"' +
         'value="Upload Resume">';
     saveForm.innerHTML = formElementsHTML;
@@ -171,7 +223,7 @@ function getUploadJobDescriptionDiv() {
     var saveForm = document.createElement('form');
     saveForm.className = 'upload-jobdescription-form';
     var formElementsHTML =
-        '<textarea class="form-control paste-text-field" rows="30" id="comment"></textarea>'+
+        '<textarea class="form-control paste-text-field" rows="30" id="jobdescription-text"></textarea>'+
         '<input type="button" class="btn btn-primary upload-jobdescription-btn"' +
         'value="Upload Job Description">';
     saveForm.innerHTML = formElementsHTML;

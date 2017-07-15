@@ -21,11 +21,22 @@ def index():
 
 @socketio.on('connect')
 def test_connect():
-    print "connected"
+    socketio.emit('init', True)
+    print 'connected'
 
 @socketio.on('disconnect')
 def test_disconnect():
     print "disconnected"
+
+@socketio.on('resumeText')
+def getResume(data):
+    print data
+    socketio.emit("ResumeSuccess", True)
+
+@socketio.on('jobDescriptionText')
+def getResume(data):
+    print data
+    socketio.emit("JobDescriptionSuccess", True)
 
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')
