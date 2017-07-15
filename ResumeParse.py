@@ -12,5 +12,6 @@ def resume_parse(data):
     os.system("java -cp 'bin/*:../GATEFiles/lib/*:../GATEFiles/bin/gate.jar:lib/*' code4goal.antony.resumeparser.ResumeParserProgram ..\..\out.txt ..\..\parsedresume.txt")
     os.system("java ./ResumeProcessing/src/Parser ../../parsedresume.txt | java ./ResumeProcessing/src/ExtractHotWords > ../../results.txt")
     os.system("rm ../../parsedresume.txt")
+    os.system("cd ../..")
 
-    
+    return './results.txt'
