@@ -69,6 +69,10 @@ $(document).ready(function() {
         socket.emit('onResumeVerify');
         socket.on('returnParsedResume', function(data) {
             verifyResume(data);
+            $('.submit-verifyresume-btn').click(function() {
+                var values = $('.skills').val();
+                var returnVals = getFinalsSkillSet(values);
+            });
         });
     }
 
@@ -95,6 +99,15 @@ function createHeader(header) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// Get Skillset
+function getFinalsSkillSet(data) {
+    var data = data.split(',');
+    data = data.filter(entry => entry.trim() != '');
+    for (var i = 0; i < data.length; i++) {
+        data[i] = data[i].substring(1);
+    }
+    return data;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -293,7 +306,7 @@ function getVerifyResumeForm() {
         '<textarea class="form-control skills" type="textarea" id="skills" rows="15">' +
         '</textarea>' +
     '</div>' +
-    '<input type="button" class="btn btn-primary submit-jobdescription-btn"' +
+    '<input type="button" class="btn btn-primary submit-verifyresume-btn"' +
     'value="Submit">';
     var form = document.createElement('form');
     form.className = "verify-resume-form";
