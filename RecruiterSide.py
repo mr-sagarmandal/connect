@@ -1,10 +1,13 @@
 import happybase
 
-def findMatches():
+def findMatches(skillsDict):
     connection = happybase.Connection('localhost')
     connection.open()
-    table2 = connection.table('<jobs>')
-    
+    table2 = connection.table('job')
+    results = [];
+    for key, value in table2.scan():
+
+
 
 
 
