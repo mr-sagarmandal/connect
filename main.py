@@ -1,4 +1,5 @@
 import os
+import webbrowser
 import sys
 import subprocess
 import shutil
@@ -16,8 +17,16 @@ thread = None
 
 @app.route('/')
 def index():
-    print request.remote_addr
     return render_template('index.html', async_mode=socketio.async_mode)
 
+@socketio.on('connect')
+def test_connect():
+    print "connected"
+
+@socketio.on('disconnect')
+def test_disconnect():
+    print "disconnected"
+
 if __name__ == '__main__':
+    webbrowser.open_new('http://127.0.0.1:5000/')
     socketio.run(app)

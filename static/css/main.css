@@ -105,3 +105,19 @@ div.dashboard {
     font-weight: 800;
     font-size: 200%;
 }
+
+.command-header {
+    padding-left: 15px;
+}
+
+.save-resume-container {
+    padding-left: 15px;
+}
+
+.save-jobdescription-container {
+    padding-left: 15px;
+}
+
+.paste-text-field {
+    max-width: 1000px;
+}
