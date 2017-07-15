@@ -1,4 +1,4 @@
-import happybase
+#import happybase
 
 def findMatches(skillsArr):
     connection = happybase.Connection('localhost')
@@ -8,13 +8,14 @@ def findMatches(skillsArr):
     for key, value in table2.scan():
         companyDict = {};
         matches = []
-        companyDict['position'] =
-        companyDict['company'] =
+        companyDict['position'] = table.row(key, 'company:position')
+        companyDict['company'] = table.row(key, 'company:name')
+        quals=table.row(key,'qualification')
         lengthOfSkillSet = 0;
-        for quals in :
+        for qual in quals :
             lengthOfSkillSet += 1
             for vals in skillsArr:
-                if == vals:
+                if quals[qual] == vals:
                     matches.add(vals)
         companyDict['matches'] = matches
         percentage = int(100 * len(matches)/lengthOfSkillSet)

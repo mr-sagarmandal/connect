@@ -46,13 +46,12 @@ def jobDescriptionToDB(jobDescriptionsJSON):
     table2 = connection.table('job')
 
     for jobDict in jobDescriptionsJSON:
-<<<<<<< HEAD
         key = jobDict["Position-Name"] + '@' + jobDict["Company-Name"]
         table2.put(key, {'company:name': jobDict["Company-Name"]}
-=======
+
         key = jobDict["Position-Name"] + "@" + jobDict["Company-Name"]
         table2.put(key, {'company:name': jobDict["Company-Name"]})
->>>>>>> ac4b6b8f6e98c19b204c4924c217b5bce3a66970
+
         counter = 0
         for qualifications in jobDict['Qualifications']:
             col_name = 'qual' + str(counter)

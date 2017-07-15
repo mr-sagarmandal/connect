@@ -9,6 +9,7 @@ from shutil import copyfile
 from flask import Flask, render_template, request, flash, session, request
 from flask_socketio import SocketIO, emit
 import ResumeParse
+import UserSide
 
 async_mode = None
 app = Flask(__name__)
@@ -31,26 +32,27 @@ def test_disconnect():
 
 @socketio.on('resumeText')
 def getResume(data):
-    #ResumeParse.resume_parse(data)
-    print type(data)
-    socketio.emit("ResumeSuccess", True)
+    out = ResumeParse.resume_parse(data)
+    socketio.emit("ResumeSuccess", out)
 
 @socketio.on('jobDescriptionText')
 def getResume(data):
-    print data
     socketio.emit("JobDescriptionSuccess", True)
 
 @socketio.on('onResumeVerify')
-def sendParsedResume():
-    print 'onResumeVerify'
+def sendParsedResume(data):
     skills = {"skills": ["android", "c", "css", "html", "java", "javascript", "jboss", "mvc", "python", "sql"]}
-    print skills
-    socketio.emit("returnParsedResume", skills)
+    socketio.emit("returnParsedResume", data)
 
 @socketio.on('onJobDescriptVerify')
-def sendParsedResume():
-    print 'onJobDescriptVerify'
+def sendJobDescription():
     socketio.emit("returnParsedJobDescription", 'sasd')
+
+@socketio.on('getVerifiedResume')
+def matchVerifiedResume(skills):
+    results = UserSide.findMatches(skills)
+    print results
+    socketio.emit("sendMatches", results)
 
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')

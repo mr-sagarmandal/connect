@@ -32,17 +32,14 @@ $(document).ready(function() {
                 resumeText =  {resumeText};
                 socket.emit("resumeText", resumeText);
             }
-            socket.on('ResumeSuccess', function(data) {
-                if (data) {
-                    notifyUploadResume(data);
-                    $('#resume-text').val('');
-                    resumeVerification();
-                } else {
-                    bigTrouble("Resume could not be uploaded. Reload and Try again");
-                }
-            });
         });
     }
+
+
+    socket.on('ResumeSuccess', function(data) {
+        $('#resume-text').val('');
+        resumeVerification(data);
+    });
 
     function recruitmentClicked() {
         loadRecruitmentJob();
@@ -65,16 +62,19 @@ $(document).ready(function() {
         });
     }
 
-    function resumeVerification() {
-        socket.emit('onResumeVerify');
-        socket.on('returnParsedResume', function(data) {
-            verifyResume(data);
-            $('.submit-verifyresume-btn').click(function() {
-                var values = $('.skills').val();
-                var returnVals = getFinalsSkillSet(values);
-            });
-        });
+    function resumeVerification(data) {
+        socket.emit('onResumeVerify', data);
     }
+
+
+    socket.on('returnParsedResume', function(data) {
+        verifyResume(data);
+        $('.submit-verifyresume-btn').click(function() {
+            var values = $('.skills').val();
+            var returnVals = getFinalsSkillSet(values);
+            socket.emit('getVerifiedResume', returnVals);
+        });
+    });
 
     function jobDescriptionVerification() {
         socket.emit('onJobDescriptVerify');
@@ -82,6 +82,11 @@ $(document).ready(function() {
             verifyJobDescription();
         });
     }
+
+    socket.on('sendMatches', function(data) {
+        console.log(data)
+        showMatch(data);
+    });
 });
 
 // Clear Page
@@ -370,11 +375,13 @@ function getVerifyJobDescriptionForm() {
 //Employee Match Div Creation
 function showMatch(jobMatches) {
     clearPage();
+    console.log('sfaf')
     createHeader("Jobs that Match your Skills");
     createMatchDivs(jobMatches);
 }
 
 function createMatchDivs(jobMatches) {
+    console.log('asds')
     var number = jobMatches.length;
     for (var i = 0; i < number; i++) {
         var job = jobMatches[i];
