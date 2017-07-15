@@ -10,4 +10,3 @@ for key, data in table.scan():
     row = table.row(key, columns = [b'skill'])
     for keys in row:
         print row[keys]
-    

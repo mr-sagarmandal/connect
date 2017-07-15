@@ -1,0 +1,85 @@
+body {font-family: 'Roboto-Medium'; font-size: 14px !important; margin: 10px}
+.elmHidden {display: none !important}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+
+.top-navbar{
+    background-color: rgba(0,80,149,1) !important;
+    font-weight: 600;
+    z-index: 1030;
+    border: none !important;
+}
+
+.topbar-right {
+    margin-right: 10px !important;
+    color:white !important;
+}
+
+.connectr-title {
+    color:white !important;
+}
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+html,
+body,
+.view {
+    height: 100%;
+}
+
+.view {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.full-bg-img {
+    height: 100%;
+}
+
+.container-fluid {
+    height: 100%;
+    //overflow-y: scroll; /* don't show content that exceeds my height */
+}
+
+.row {
+    height: 100%;
+}
+
+div.dashboard {
+    bottom: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    z-index: 900;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.could-not-connect {
+    height: inherit !important;
+    text-align: center;
+    vertical-align: middle;
+}
