@@ -8,6 +8,7 @@ from shutil import copyfile
 from flask import Flask, render_template, request, flash, session, request
 from flask_socketio import SocketIO, emit
 
+async_mode = None
 app = Flask(__name__)
 app.secret_key = "\xcc\xaae-6\xd6\x8bk"
 socketio = SocketIO(app, async_mode=async_mode)
