@@ -38,6 +38,16 @@ def getResume(data):
     print data
     socketio.emit("JobDescriptionSuccess", True)
 
+@socketio.on('onResumeVerify')
+def sendParsedResume():
+    print 'onResumeVerify'
+    socketio.emit("returnParsedResume", 'ccc')
+
+@socketio.on('onJobDescriptVerify')
+def sendParsedResume():
+    print 'onJobDescriptVerify'
+    socketio.emit("returnParsedJobDescription", 'xxx')
+
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')
     socketio.run(app)

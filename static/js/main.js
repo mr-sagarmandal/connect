@@ -54,7 +54,7 @@ $(document).ready(function() {
             }
             socket.on('JobDescriptionSuccess', function(data) {
                 if (data) {
-                    notifyUploadResume(data);
+                    notifyUploadJobDescription(data);
                     $('#jobdescription-text').val('');
                     jobDescriptionVerification();
                 } else {
@@ -66,10 +66,18 @@ $(document).ready(function() {
 
     function resumeVerification() {
         socket.emit('onResumeVerify');
+        socket.on('returnParsedResume', function(data) {
+            verifyResume();
+            console.log(data);
+        });
     }
 
     function jobDescriptionVerification() {
         socket.emit('onJobDescriptVerify');
+        socket.on('returnParsedJobDescription', function(data) {
+            verifyJobDescription();
+            console.log(data);
+        });
     }
 });
 
