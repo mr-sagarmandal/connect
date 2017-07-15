@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/googleMaterial/googleMaterialIcons.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'),
+		url('../fonts/roboto/robotoRegular.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/roboto/robotoRegular.woff') format('woff') /* Super Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto-Medium'), local('Roboto Medium'),
+		url('../fonts/roboto/robotoMedium.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/roboto/robotoMedium.woff') format('woff') /* Super Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Roboto-Light';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto-Light'), local('Roboto Light'),
+		url('../fonts/roboto/robotoLight.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/roboto/robotoLight.woff') format('woff') /* Super Modern Browsers */
+}
