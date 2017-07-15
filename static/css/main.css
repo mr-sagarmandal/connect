@@ -121,3 +121,13 @@ div.dashboard {
 .paste-text-field {
     max-width: 1000px;
 }
+
+.verify-resume-container {
+    padding-left: 15px;
+    max-width: 1000px;
+}
+
+.verify-jobdescription-container {
+    padding-left: 15px;
+    max-width: 1000px;
+}

@@ -51,15 +51,15 @@ function loadInitDivisions(success) {
     if (success) {
         createInitDivs();
     } else {
-        couldNotConnect();
+        bigTrouble('Oops! Could Not Connect');
     }
 }
 
-function couldNotConnect() {
+function bigTrouble(text) {
     clearPage();
     var bigContainer = document.createElement('div');
     bigContainer.className = 'jumbotron jumbotron-fluid text-center could-not-connect';
-    bigContainer.innerHTML = "<h1>Oops! Could Not Connect</h1>"
+    bigContainer.innerHTML = "<h1>" + text +"</h1>"
     document.getElementsByClassName("dashboard")[0].appendChild(bigContainer);
 }
 
@@ -110,7 +110,7 @@ function getUploadResumeDiv() {
     var saveForm = document.createElement('form');
     saveForm.className = 'upload-resume-form';
     var formElementsHTML =
-        '<textarea class="form-control paste-text-field" rows="30" id="comment"></textarea>'+
+        '<textarea class="form-control paste-text-field" rows="30" id="comment" placeholder="Paste your Resume here"></textarea>'+
         '<input type="button" class="btn btn-primary upload-resume-btn"' +
         'value="Upload Resume">';
     saveForm.innerHTML = formElementsHTML;
@@ -203,3 +203,83 @@ function notifyUploadJobDescription(success) {
         }, 3000);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+// creating Resume Verification divs
+function verifyResume() {
+    clearPage();
+    createHeader("Please Verify If Your Resume Was Parsed Properly");
+    createResumeVerifierFormContainers();
+}
+
+function createResumeVerifierFormContainers() {
+    var bigContainer = document.createElement('div');
+    bigContainer.className = 'verify-resume-container';
+    bigContainer.appendChild(getVerifyResumeForm());
+    document.getElementsByClassName('dashboard')[0].appendChild(bigContainer);
+}
+
+function getVerifyResumeForm() {
+    var formDivHTML =
+    '<div class="form-group">' +
+        '<label>Name</label>' +
+        '<input type="text" class="form-control" id="name" name="name" required>' +
+    '</div>' +
+    '<div class="form-group">' +
+        '<label>Email</label>' +
+        '<input type="text" class="form-control" id="email" name="email">' +
+    '</div>' +
+    '<div class="form-group">' +
+        '<label>Skills</label>' +
+        '<textarea class="form-control skills" type="textarea" id="skills" rows="15">' +
+        '</textarea>' +
+    '</div>' +
+    '<input type="button" class="btn btn-primary submit-jobdescription-btn"' +
+    'value="Submit">';
+    var form = document.createElement('form');
+    form.className = "verify-resume-form";
+    form.id = "verify-resume-form";
+    form.setAttribute('role', 'form');
+    form.innerHTML = formDivHTML;
+    return form;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// creating Resume Verification divs
+function verifyJobDescription() {
+    clearPage();
+    createHeader("Please Verify If Your Job Description Was Parsed Properly");
+    createJobDescriptionFormContainers();
+}
+
+function createJobDescriptionFormContainers() {
+    var bigContainer = document.createElement('div');
+    bigContainer.className = 'verify-jobdescription-container';
+    bigContainer.appendChild(getVerifyJobDescriptionForm());
+    document.getElementsByClassName('dashboard')[0].appendChild(bigContainer);
+}
+
+function getVerifyJobDescriptionForm() {
+    var formDivHTML =
+    '<div class="form-group">' +
+        '<label>Name</label>' +
+        '<input type="text" class="form-control" id="name" name="name" required>' +
+    '</div>' +
+    '<div class="form-group">' +
+        '<label>Job Name</label>' +
+        '<input type="text" class="form-control" id="jobname" name="jobname">' +
+    '</div>' +
+    '<div class="form-group">' +
+        '<label>Qualifications</label>' +
+        '<textarea class="form-control qualifications" type="textarea" id="qualifications" rows="15">' +
+        '</textarea>' +
+    '</div>' +
+    '<input type="button" class="btn btn-primary submit-jobdescription-btn"' +
+    'value="Submit">';
+    var form = document.createElement('form');
+    form.className = "verify-resume-form";
+    form.id = "verify-resume-form";
+    form.setAttribute('role', 'form');
+    form.innerHTML = formDivHTML;
+    return form;
+}
