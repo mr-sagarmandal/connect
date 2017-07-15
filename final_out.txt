@@ -1,0 +1,1 @@
+{"skills": ["css","html","java","javascript","jsp","linux","phd","sql","xml"]}

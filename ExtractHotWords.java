@@ -9,7 +9,7 @@ public class ExtractHotWords {
 	  String line = "";
 	  boolean out = false;
 	  
-	  System.out.print("\"skills\": [");
+	  System.out.print("{\"skills\": [");
 	   // String to be scanned to find the pattern.
 	  String temp = "";
       while (sc.hasNextLine()) {
@@ -23,7 +23,7 @@ public class ExtractHotWords {
     			  out = true;
       }
       temp = temp.substring(0,temp.lastIndexOf(','));
-      		 System.out.print(temp + "]");
+      		 System.out.print(temp + "]}");
       //String pattern1 = "(.*)(\"skills\":\\[[^\\]]*\\])(.*)";
       //String pattern2 = "(.*)(\"email\":\\[)([^\\]]*)(\\].*)";
 
