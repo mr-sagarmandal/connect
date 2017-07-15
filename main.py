@@ -31,7 +31,7 @@ def test_disconnect():
 
 @socketio.on('resumeText')
 def getResume(data):
-    ResumeParse.resume_parse(data)
+    #ResumeParse.resume_parse(data)
     print type(data)
     socketio.emit("ResumeSuccess", True)
 
@@ -43,12 +43,14 @@ def getResume(data):
 @socketio.on('onResumeVerify')
 def sendParsedResume():
     print 'onResumeVerify'
-    socketio.emit("returnParsedResume", 'ccc')
+    skills = {"skills": ["android", "c", "css", "html", "java", "javascript", "jboss", "mvc", "python", "sql"]}
+    print skills
+    socketio.emit("returnParsedResume", skills)
 
 @socketio.on('onJobDescriptVerify')
 def sendParsedResume():
     print 'onJobDescriptVerify'
-    socketio.emit("returnParsedJobDescription", 'xxx')
+    socketio.emit("returnParsedJobDescription", 'sasd')
 
 if __name__ == '__main__':
     webbrowser.open_new('http://127.0.0.1:5000/')

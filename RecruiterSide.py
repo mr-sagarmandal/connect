@@ -1,32 +1,23 @@
 import happybase
 
-def findMatches(skillsDict):
+def findMatches(skillsArr):
     connection = happybase.Connection('localhost')
     connection.open()
     table2 = connection.table('job')
     results = [];
     for key, value in table2.scan():
-
-
-
-
-
-def findMatchesForQualifiers(jobQualDict):
-    connection = happybase.Connection('localhost')
-    table1 = connection.table('resume')
-    size = len(jobQualDict)
-    candidates = {}
-    for email, data in table.scan():
+        companyDict = {};
         matches = []
-        jobQualDictCopy = jobQualDict
-        row = table.row(key, columns = [b'skill'])
-        for keys in row:
-            currSkill = row[keys]
-            for quals in jobQualDictCopy:
-                if (currSkill == jobQualDictCopy[quals]):
-                    matches.add(currSkill)
-                    jobQualDictCopy.pop(currSkill, None)
-                    break
-        percentage = int(len(matches)/size * 100)
-        candidates[email] = {'percentage' : percentage, 'matches' : matches}
-    return candidates
+        companyDict['position'] =
+        companyDict['company'] =
+        lengthOfSkillSet = 0;
+        for quals in :
+            lengthOfSkillSet += 1
+            for vals in skillsArr:
+                if == vals:
+                    matches.add(vals)
+        companyDict['matches'] = matches
+        percentage = int(100 * len(matches)/lengthOfSkillSet)
+        companyDict['percentage'] = percentage
+        results.add(companyDict)
+    return results

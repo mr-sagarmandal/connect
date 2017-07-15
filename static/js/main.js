@@ -68,8 +68,7 @@ $(document).ready(function() {
     function resumeVerification() {
         socket.emit('onResumeVerify');
         socket.on('returnParsedResume', function(data) {
-            verifyResume();
-            console.log(data);
+            verifyResume(data);
         });
     }
 
@@ -77,7 +76,6 @@ $(document).ready(function() {
         socket.emit('onJobDescriptVerify');
         socket.on('returnParsedJobDescription', function(data) {
             verifyJobDescription();
-            console.log(data);
         });
     }
 });
@@ -266,10 +264,11 @@ function notifyUploadJobDescription(success) {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 // creating Resume Verification divs
-function verifyResume() {
+function verifyResume(data) {
     clearPage();
     createHeader("Please Verify If Your Resume Was Parsed Properly");
     createResumeVerifierFormContainers();
+    fillVerifierDivs(data);
 }
 
 function createResumeVerifierFormContainers() {
@@ -302,6 +301,16 @@ function getVerifyResumeForm() {
     form.setAttribute('role', 'form');
     form.innerHTML = formDivHTML;
     return form;
+}
+
+function fillVerifierDivs(data) {
+    var skills = data['skills']
+    console.log(data['skills'])
+    string = ''
+    for (var i = 0; i < skills.length; i++) {
+         var string = string + "\n" + skills[i] + ",";
+    }
+    $('.skills').val(string);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -359,7 +368,7 @@ function createMatchDivs(jobMatches) {
         var bigContainer = document.createElement('div');
         bigContainer.className = 'jumbotron jumbotron-fluid text-center jobMatches';
         head = '';
-        head += "<h1>" + job['position'] + "</h1></br>" + "<h2>" + job['company'] + "</h2></br>";
+        head += "<h1>" + job['position'] +' ' + job['percentage'] + '%' + "</h1></br>" + "<h2>" + job['company'] + "</h2></br>";
         head = head + '<h3>Skill Matches:</h3></br>';
         var num2 = job['matches'].length
         var matchString = '';
