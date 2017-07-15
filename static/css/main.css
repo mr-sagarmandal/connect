@@ -37,7 +37,7 @@ body {font-family: 'Roboto-Medium'; font-size: 14px !important; margin: 10px}
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+    padding-top: 50px;
 }
 
 html,
@@ -82,4 +82,26 @@ div.dashboard {
     height: inherit !important;
     text-align: center;
     vertical-align: middle;
+}
+
+.init-container {
+    height: inherit !important;
+}
+
+.center-content-between {
+    height: inherit !important;
+}
+
+.init-buttons {
+    height: inherit !important;
+    text-align: center;
+    vertical-align: middle !important;
+    position: relative;
+    top: 250px !important;
+    cursor: pointer;
+}
+
+#init-head {
+    font-weight: 800;
+    font-size: 200%;
 }
