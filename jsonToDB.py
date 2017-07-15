@@ -1,4 +1,4 @@
-#import happybase
+import happybase
 import json
 
 
@@ -39,7 +39,6 @@ sampleJSON =  [
     		"Qualifications": ["Medical Devices", "Statistics", "Excel"]
     	}
     ]
-table.put(b'row-key', {b'cf:col1': b'value1'})
 
 def jobDescriptionToDB(jobDescriptionsJSON):
     connection = happybase.Connection('localhost')
@@ -47,12 +46,12 @@ def jobDescriptionToDB(jobDescriptionsJSON):
     table2 = connection.table('job')
 
     for jobDict in jobDescriptionsJSON:
-        str key = jobDict["Position-Name"] + '@' + jobDict["Company-Name"]
-        table2.put(key, {'company:name': jobDict["Company-Name"]}
+        key = jobDict["Position-Name"] + "@" + jobDict["Company-Name"]
+        table2.put(key, {'company:name': jobDict["Company-Name"]})
         counter = 0
         for qualifications in jobDict['Qualifications']:
             col_name = 'qual' + str(counter)
-            counter++
+            counter=counter+1
             cf='qualification:'+col_name
             table2.put(key, {cf:qualifications})
 
