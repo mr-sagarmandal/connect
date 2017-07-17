@@ -1,9 +1,19 @@
 # Connectr
+### Linkedin Hackathon Project
 
-# The Problem
-We can all relate to the chaos of student career fairs. Students waste time wandering from booth to booth because they don’t have enough time beforehand to research each job opening and company. Recruiters waste time sifting through dozens of paper resumes trying to remember the best talent.
-# What & Who
-Connectr is a software that solves this problem by parsing through resumes and job descriptions to create opportunities based on matching qualifications and interests.
+## The Problem
+Career fairs over years have turned chaotic. Hundreds of students show up and line up without knowing much about most of the companies and whether the positions they offer are suitable to them. Recruiters spend big chunk of the day talking to candidates who are not suitable for the roles available instead of targeting their best prospects. With Connectr, we aim to solved the problem.
+
+## What & Who
+Connectr is a software that solves this problem by parsing through resumes and job descriptions, and matching the candidates to jobs that fit their qualifications the most. This saves time in both ends and end up making career fairs a very personalized experience.
+
+## Dependencies
+* Python 2.7 and its Dependencies -
+  * Flask
+  * Socketio
+  * Happybase (Only works well in Unix based systems)
+* Java
+* Javascript
 
 # Technicals
 In order to utilize the database, two tables must be created in HBASE using the following schema:
