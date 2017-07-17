@@ -36,9 +36,9 @@ $(document).ready(function() {
     }
 
 
-    socket.on('ResumeSuccess', function(data) {
+    socket.on('ResumeSuccess', function() {
         $('#resume-text').val('');
-        resumeVerification(data);
+        resumeVerification();
     });
 
     function recruitmentClicked() {
@@ -62,8 +62,8 @@ $(document).ready(function() {
         });
     }
 
-    function resumeVerification(data) {
-        socket.emit('onResumeVerify', data);
+    function resumeVerification() {
+        socket.emit('onResumeVerify');
     }
 
 
@@ -84,7 +84,6 @@ $(document).ready(function() {
     }
 
     socket.on('sendMatches', function(data) {
-        console.log(data)
         showMatch(data);
     });
 });
